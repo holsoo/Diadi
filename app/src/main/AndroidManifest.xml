@@ -16,7 +16,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+
         android:usesCleartextTraffic="true"
+
         android:theme="@style/Theme.Diadi"
         tools:targetApi="33">
         <activity
@@ -32,6 +34,7 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="b5b8c5c7a3230c7e09fe335885086c25" />
+
     </application>
 
 </manifest>
