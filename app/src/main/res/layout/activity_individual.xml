@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/titleDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:textSize="20dp"
+                android:text="첫 번째 일기"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:textSize="15dp"
+                android:text="2023.05.12 금요일"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/myPicture"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_below="@+id/titleDate"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_launcher_background" />
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/myPicture"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="40dp"
+            android:textSize="15dp"
+            android:text="가평 실로암 펜션"/>
+        <TextView
+            android:id="@+id/diaryTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/location"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
+            android:textSize="20dp"
+            android:text="융소 첫 MT"/>
+
+        <EditText
+            android:layout_below="@+id/diaryTitle"
+            android:background="@drawable/border"
+            android:layout_width="350dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="20dp"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
