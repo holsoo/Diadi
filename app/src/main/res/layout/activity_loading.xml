@@ -12,7 +12,7 @@
         android:background="#DDDDFF">
 
         <TextView
-            android:id="@+id/diady"
+            android:id="@+id/load_diady"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -22,22 +22,22 @@
             android:textSize="70dp" />
 
         <ImageView
-            android:id="@+id/mainIcon"
+            android:id="@+id/load_mainIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/diady"
-            android:layout_alignRight="@+id/diady"
-            android:src="@drawable/ic_launcher_background" />
+            android:layout_below="@+id/load_diady"
+            android:layout_alignRight="@+id/load_diady"
+            android:src="@drawable/ic_launcher_background"/>
 
         <TextView
-            android:id="@+id/mainText1"
+            android:id="@+id/load_mainText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/mainIcon"
-            android:layout_toLeftOf="@+id/mainIcon"
+            android:layout_alignBottom="@+id/load_mainIcon"
+            android:layout_toLeftOf="@+id/load_mainIcon"
             android:width="280dp"
             android:height="100dp"
-            android:text="_________님이             기록한지 0일째"
+            android:text="닉네임님이\n기록한지 0일째"
             android:textSize="30dp" />
     </RelativeLayout>
 

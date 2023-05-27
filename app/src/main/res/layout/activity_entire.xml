@@ -13,25 +13,29 @@
             android:layout_width="match_parent"
             android:layout_height="50dp">
             <Button
+                android:id="@+id/entire_backBtn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:text="<-"/>
             <EditText
+                android:id="@+id/entire_diarySearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="일기 제목을 입력하세요."/>
             <Button
+                android:id="@+id/entire_searchBtn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:text="o"/>
         </LinearLayout>
         <TextView
+            android:id="@+id/entire_numOfDiaryHere"
             android:layout_gravity="center"
             android:layout_width="350dp"
             android:layout_height="200dp"
             android:gravity="center|left"
-            android:text="명지대학교에 저장된          5개의 일기"
+            android:text="장소에 저장된\n0개의 일기"
             android:textSize="30dp"/>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
