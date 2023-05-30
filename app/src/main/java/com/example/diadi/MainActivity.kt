@@ -9,9 +9,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
-import android.os.Bundle
-import android.provider.Settings
-import android.widget.Toast
 
 
 import androidx.appcompat.app.AppCompatActivity
