@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/toptext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="107dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$nickname 님이"
+            android:textSize="27sp"
+            android:textColor="@color/line"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="기록한지 $day일째"
+            android:textSize="24sp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/diary_button"
+        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+        android:layout_width="330dp"
+        android:layout_height="125dp"
+        android:layout_gravity="start|top"
+        android:layout_marginTop="36dp"
+        android:padding="8dp"
+        android:text="내가 쓴 일기"
+        android:textAlignment="viewStart"
+        android:textSize="20dp"
+        android:background="@drawable/rounded_button"
+        app:layout_constraintStart_toStartOf="@+id/toptext"
+        app:layout_constraintTop_toBottomOf="@+id/toptext" />
+
+    <Button
+        android:id="@+id/location_button"
+        android:layout_width="330dp"
+        android:layout_height="125dp"
+        android:layout_gravity="start|top"
+        android:padding="8dp"
+        android:text="내가 저장한 장소"
+        android:textAlignment="viewStart"
+        android:background="@drawable/rounded_button"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="367dp" />
+
+    <ImageButton
+        android:id="@+id/buttonNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="448dp"
+        android:src="@drawable/ic_next_arrow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.889"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toptext" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
