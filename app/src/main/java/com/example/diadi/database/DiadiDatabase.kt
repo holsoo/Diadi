@@ -21,7 +21,7 @@ abstract class DiadiDatabase : RoomDatabase() {
     abstract fun placeDao(): PlaceDao
 
     companion object {
-        @Volatile private var instance: DiadiDatabase ?= null
+        private var instance: DiadiDatabase ?= null
 
         fun getInstance(context: Context) : DiadiDatabase {
             return instance ?: synchronized(this) {
@@ -33,5 +33,7 @@ abstract class DiadiDatabase : RoomDatabase() {
         private fun buildDatabase(context: Context) : DiadiDatabase {
             return Room.databaseBuilder(context.applicationContext, DiadiDatabase::class.java, "diadi-database").build()
         }
+
     }
+
 }
