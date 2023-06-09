@@ -2,10 +2,21 @@ package com.example.diadi.repository
 
 import com.example.diadi.dao.UserDao
 import com.example.diadi.domain.User
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class UserRepository(private val userDao: UserDao) {
+@Singleton
+class UserRepository @Inject constructor(
+    private val userDao: UserDao
+){
     suspend fun insertUser(nickname : String) {
-        val user = User(0, nickname)
-        userDao.insertUser(user)
+        suspend fun insertUser(nickname: String) {
+            withContext(Dispatchers.IO) {
+                val user = User(0, nickname)
+                userDao.insertUser(user)
+            }
+        }
     }
 }

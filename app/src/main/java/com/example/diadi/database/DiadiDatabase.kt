@@ -15,6 +15,7 @@ import com.example.diadi.domain.User
 
 @Database(entities = [User::class, Diary::class, Place::class], version = 1)
 @TypeConverters(Converters::class)
+
 abstract class DiadiDatabase : RoomDatabase() {
     abstract fun userDao() : UserDao
     abstract fun diaryDao(): DiaryDao
