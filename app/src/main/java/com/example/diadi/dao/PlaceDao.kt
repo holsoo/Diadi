@@ -20,5 +20,5 @@ interface PlaceDao {
     fun deletePlace(place: Place)
 
     @Query("SELECT * FROM PLACE WHERE PLACE.is_favorite = 1")
-    fun findFavoritePlace()
+    fun findFavoritePlace() : List<Place>
 }

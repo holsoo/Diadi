@@ -4,10 +4,10 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "place")
 data class Place(
     @PrimaryKey(autoGenerate = true)
-    val placeId : Long,
+    val placeId : Int = 0,
 
     @ColumnInfo(name = "place_name")
     val placeName : String,

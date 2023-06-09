@@ -20,7 +20,7 @@ interface DiaryDao {
     fun findDiaryById(diaryId: Long): List<Diary>
 
     @Query("SELECT * FROM DIARY")
-    fun findAllDiary()
+    fun findAllDiary() : List<Diary>
 
     @Insert
     fun insertDiary(diary: Diary)

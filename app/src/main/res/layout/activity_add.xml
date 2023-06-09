@@ -17,7 +17,7 @@
                 android:id="@+id/add_toPrev"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:text="<-"/>
+                android:text="-"/>
             <TextView
                 android:id="@+id/add_writeDiary"
                 android:layout_width="wrap_content"
@@ -33,6 +33,12 @@
             android:text="사진"
             android:layout_marginLeft="30dp"
             android:textSize="20dp"/>
+
+        <Button
+            android:id="@+id/add_addPictureButton"
+            android:layout_height="1dp"
+            android:layout_width="1dp"/>
+
         <ImageView
             android:id="@+id/add_addPicture"
             android:layout_width="200dp"
