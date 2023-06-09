@@ -20,6 +20,10 @@ import com.example.diadi.database.DiadiDatabase
 import com.example.diadi.databinding.ActivityMainBinding
 import com.example.diadi.viewmodel.UserViewModel
 
+import dagger.hilt.android.AndroidEntryPoint
+
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val ACCESS_FINE_LOCATION = 1000
     lateinit var binding : ActivityMainBinding
@@ -35,9 +39,10 @@ class MainActivity : AppCompatActivity() {
         var db = DiadiDatabase.getInstance(applicationContext)
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
-        userViewModel.joinUser("유원준");
-        userViewModel.joinUser("장동혁");
-        userViewModel.joinUser("김혜연");
+        userViewModel.joinUser("유원준")
+        userViewModel.joinUser("장동혁")
+        userViewModel.joinUser("김혜연")
+
 
         // 사용자가 gps 기능을 활성화했는지 체크
         activateGPS();
