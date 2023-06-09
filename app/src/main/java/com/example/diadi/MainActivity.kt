@@ -19,7 +19,9 @@ import com.example.diadi.database.DiadiDatabase
 
 import com.example.diadi.databinding.ActivityMainBinding
 import com.example.diadi.viewmodel.UserViewModel
+
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -40,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         userViewModel.joinUser("유원준")
         userViewModel.joinUser("장동혁")
         userViewModel.joinUser("김혜연")
+
 
         // 사용자가 gps 기능을 활성화했는지 체크
         activateGPS();

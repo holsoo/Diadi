@@ -24,6 +24,7 @@ import java.util.Date
     ],
     indices = [Index(value = ["place_id"])]
 )
+
 data class Diary (
     @PrimaryKey(autoGenerate = true)
     val diaryId: Int = 0,
