@@ -2,6 +2,7 @@ package com.example.diadi.common.di
 
 import android.app.Application
 import android.content.Context
+import androidx.room.Room
 import com.example.diadi.dao.UserDao
 import com.example.diadi.database.DiadiDatabase
 import com.example.diadi.repository.UserRepository
@@ -14,7 +15,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object ProviderModule {
-
     @Provides
     @Singleton
     fun provideUserRepository(userDao: UserDao): UserRepository {

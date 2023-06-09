@@ -18,9 +18,14 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.diadi.database.DiadiDatabase
 
 import com.example.diadi.databinding.ActivityMainBinding
+import com.example.diadi.domain.User
 import com.example.diadi.viewmodel.UserViewModel
 
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -28,25 +33,26 @@ class MainActivity : AppCompatActivity() {
     private val ACCESS_FINE_LOCATION = 1000
     lateinit var binding : ActivityMainBinding
 
-    private lateinit var userViewModel : UserViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-        // db 테스트 데이터 삽입
+        var userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         var db = DiadiDatabase.getInstance(applicationContext)
-        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
-
-        userViewModel.joinUser("유원준")
-        userViewModel.joinUser("장동혁")
-        userViewModel.joinUser("김혜연")
+        CoroutineScope(Dispatchers.IO).launch {
+            userViewModel.joinUser("김혜연")
+        }
 
 
         // 사용자가 gps 기능을 활성화했는지 체크
         activateGPS();
     }
+
+//    private fun insertUser(userViewModel : UserViewModel) {
+//
+//    }
+
     private fun activateGPS() {
         if (checkLocationService()) {
             permissionCheck()
