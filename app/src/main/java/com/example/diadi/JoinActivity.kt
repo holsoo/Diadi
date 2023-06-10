@@ -3,7 +3,7 @@ package com.example.diadi
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.example.diadi.databinding.ActivityLoginBinding
+import com.example.diadi.databinding.ActivityJoinBinding
 import com.example.diadi.viewmodel.UserViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -11,14 +11,11 @@ import kotlinx.coroutines.launch
 
 class JoinActivity : AppCompatActivity() {
     private lateinit var userViewModel: UserViewModel
-
-    // 여기 binding도 Activity_login을 Activity_join으로 바꿔야 하는데 한번 바꿨다가 오류 엄청 떠서
-    // 코드 복붙해두고 다시 옮겼어요 ㅜ
-    lateinit var binding: ActivityLoginBinding
+    lateinit var binding: ActivityJoinBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivityJoinBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
