@@ -15,7 +15,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import com.example.diadi.database.DiadiDatabase
 
 import com.example.diadi.databinding.ActivityMainBinding
 import com.example.diadi.viewmodel.UserViewModel
@@ -24,6 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import net.daum.mf.map.api.MapView
 
 
 @AndroidEntryPoint
@@ -37,23 +37,23 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         var userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
-        var db = DiadiDatabase.getInstance(applicationContext)
-        CoroutineScope(Dispatchers.IO).launch {
-            userViewModel.joinUser("유원준")
-        }
-
 
         // 사용자가 gps 기능을 활성화했는지 체크
         activateGPS()
     }
 
+//      1. 요기다가 insertUser 로직 작성해주시면 됩니다.
 //    private fun insertUser(userViewModel : UserViewModel) {
 //      요기다가 insertUser 로직 작성해주시면 됩니다.
+
 //    CoroutineScope(Dispatchers.IO).launch {
 //        userViewModel.joinUser("유원준")
 //    }
 //    }
 
+    // 2. 추적 시작 코드가 아래 코드인데요,
+    // 버튼 만드시고 추적 시작때는 아래 if문 실행해주시면 됩니다.
+    // 반대로 추적 중지때는 맨 아래의 stopTracking() 함수 실행시켜 주시면 됩니다.
     private fun activateGPS() {
         if (checkLocationService()) {
             permissionCheck()
@@ -101,18 +101,25 @@ class MainActivity : AppCompatActivity() {
                     builder.show()
                 }
             }
+        } else {
+            // 모든 권한이 있으면, 추적 시작
+            startTracking()
         }
     }
+
 
     // 권한 요청
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == ACCESS_FINE_LOCATION) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // 권한 요청, 승인됨.
                 Toast.makeText(this, "위치 권한 승인", Toast.LENGTH_SHORT).show()
-
+                startTracking()
             } else {
+                // 권한 요청 했으나, 거절됨.
                 Toast.makeText(this, "위치 권한 거부", Toast.LENGTH_SHORT).show()
+                permissionCheck()
             }
         }
     }
@@ -122,5 +129,14 @@ class MainActivity : AppCompatActivity() {
         val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
+
+    // 위치 트래킹 시작
+    private fun startTracking() {
+        binding.mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
+    }
+
+    // 위치 트래킹 중지
+    private fun stopTracking() {
+        binding.mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOff
+    }
 }
-    
