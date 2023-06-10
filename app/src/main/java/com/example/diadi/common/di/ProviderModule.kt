@@ -2,9 +2,10 @@ package com.example.diadi.common.di
 
 import android.app.Application
 import android.content.Context
-import androidx.room.Room
+import com.example.diadi.dao.DiaryDao
 import com.example.diadi.dao.UserDao
 import com.example.diadi.database.DiadiDatabase
+import com.example.diadi.repository.DiaryRepository
 import com.example.diadi.repository.UserRepository
 import dagger.Module
 import dagger.Provides
@@ -25,6 +26,18 @@ object ProviderModule {
     @Singleton
     fun provideUserDao(context: Context): UserDao {
         return DiadiDatabase.getInstance(context).userDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideDiaryRepository(diaryDao: DiaryDao): DiaryRepository {
+        return DiaryRepository(diaryDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDiaryDao(context: Context): DiaryDao {
+        return DiadiDatabase.getInstance(context).diaryDao()
     }
 
     @Provides

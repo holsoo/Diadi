@@ -27,7 +27,7 @@ import java.util.Date
 
 data class Diary (
     @PrimaryKey(autoGenerate = true)
-    val diaryId: Int = 0,
+    val diaryId: Long = 0,
 
     val title: String,
 
@@ -37,13 +37,13 @@ data class Diary (
 
     val weather : Weathers,
 
-    @ColumnInfo(name = "created_at")
-    val createdAt: Date = Date(),
-
     @ColumnInfo(name = "user_id")
     var userId : Long,
 
     @ColumnInfo(name = "place_id")
-    var placeId : Long
-    )
+    var placeId : Long,
+
+    @ColumnInfo(name = "created_at")
+    val createdAt: Date = Date()
+)
 
