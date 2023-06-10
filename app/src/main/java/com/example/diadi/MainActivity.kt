@@ -44,6 +44,8 @@ class MainActivity : AppCompatActivity() {
 
 //      1. 요기다가 insertUser 로직 작성해주시면 됩니다.
 //    private fun insertUser(userViewModel : UserViewModel) {
+//      요기다가 insertUser 로직 작성해주시면 됩니다.
+
 //    CoroutineScope(Dispatchers.IO).launch {
 //        userViewModel.joinUser("유원준")
 //    }
