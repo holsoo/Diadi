@@ -26,7 +26,11 @@ class AddActivity : AppCompatActivity() {
             onClickGalleryButton()
         }
 
-        // 갤러리 호출, 이미지를 선택하면 이미지의 uri를 가져온다.
+        initGallery()
+    }
+
+    // 갤러리 호출, 이미지를 선택하면 이미지의 uri를 가져온다.
+    private fun initGallery() {
         galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
                 val image: Intent? = result.data

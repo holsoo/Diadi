@@ -18,13 +18,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.diadi.database.DiadiDatabase
 
 import com.example.diadi.databinding.ActivityMainBinding
-import com.example.diadi.domain.User
 import com.example.diadi.viewmodel.UserViewModel
 
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 
@@ -41,16 +39,19 @@ class MainActivity : AppCompatActivity() {
         var userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         var db = DiadiDatabase.getInstance(applicationContext)
         CoroutineScope(Dispatchers.IO).launch {
-            userViewModel.joinUser("김혜연")
+            userViewModel.joinUser("유원준")
         }
 
 
         // 사용자가 gps 기능을 활성화했는지 체크
-        activateGPS();
+        activateGPS()
     }
 
 //    private fun insertUser(userViewModel : UserViewModel) {
-//
+//      요기다가 insertUser 로직 작성해주시면 됩니다.
+//    CoroutineScope(Dispatchers.IO).launch {
+//        userViewModel.joinUser("유원준")
+//    }
 //    }
 
     private fun activateGPS() {
