@@ -24,6 +24,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import net.daum.mf.map.api.MapView
+import kotlin.text.Typography.dagger
 
 
 @AndroidEntryPoint
@@ -140,3 +141,5 @@ class MainActivity : AppCompatActivity() {
         binding.mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOff
     }
 }
+
+
