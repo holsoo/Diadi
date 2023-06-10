@@ -18,6 +18,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:backgroundTint="@color/ddddff"
+        android:textColor="@color/purple"
         android:text="가입하기" />
 
 </LinearLayout>
