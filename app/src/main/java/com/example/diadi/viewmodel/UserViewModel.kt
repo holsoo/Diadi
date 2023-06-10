@@ -3,7 +3,6 @@ package com.example.diadi.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.diadi.repository.UserRepository
 
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,7 +20,7 @@ class UserViewModel @Inject constructor(
     private val error = MutableLiveData<String>()
     val errorMessage: LiveData<String> get() = error
 
-    suspend fun joinUser (nickname: String) {
+    fun joinUser (nickname: String) {
         CoroutineScope(Dispatchers.IO).launch {
             validateNickname(nickname)
             userRepository.insertUser(nickname)
