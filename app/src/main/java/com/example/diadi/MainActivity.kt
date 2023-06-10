@@ -43,15 +43,13 @@ class MainActivity : AppCompatActivity() {
     }
 
 //      1. 요기다가 insertUser 로직 작성해주시면 됩니다.
-    private fun insertUser(userViewModel : UserViewModel) {
+//    private fun insertUser(userViewModel : UserViewModel) {
 //      요기다가 insertUser 로직 작성해주시면 됩니다.
 
-    CoroutineScope(Dispatchers.IO).launch {
-        userViewModel.joinUser("유원준")
-        userViewModel.joinUser("장동혁")
-        userViewModel.joinUser("김혜연")
-        }
-    }
+//    CoroutineScope(Dispatchers.IO).launch {
+//        userViewModel.joinUser("유원준")
+//    }
+//    }
 
     // 2. 추적 시작 코드가 아래 코드인데요,
     // 버튼 만드시고 추적 시작때는 아래 if문 실행해주시면 됩니다.
