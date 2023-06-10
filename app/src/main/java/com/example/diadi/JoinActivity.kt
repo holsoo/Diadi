@@ -1,6 +1,7 @@
 package com.example.diadi
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.diadi.databinding.ActivityJoinBinding
@@ -28,6 +29,7 @@ class JoinActivity : AppCompatActivity() {
         }
 
         val nickname = binding.editTextNickname.toString()
+
         join(nickname)
     }
 
@@ -40,5 +42,6 @@ class JoinActivity : AppCompatActivity() {
 
     private fun showErrorMessage(message: String) {
         // 메시지를 화면에 표시하는 로직 구현
+        Toast.makeText(getApplicationContext(),"사용할 수 없는 닉네임입니다.", Toast.LENGTH_LONG).show()
     }
 }
