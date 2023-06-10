@@ -1,32 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--여기는 구현하신 메인화면으로 대체하시면 될 것 같습니다..! -->
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <Button
-            android:id="@+id/location_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="위치"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <net.daum.mf.map.api.MapView
         android:id="@+id/map_view"
         android:layout_width="match_parent"
@@ -35,4 +13,136 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/main_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:text="00일 동안의 기록\n추억 0개"
+        android:textColor="@color/black"
+        android:textSize="25dp" />
+    <ImageView
+        android:id="@+id/main_search"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_launcher_foreground"
+        android:layout_gravity="right"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp" />
+
+    <Button
+        android:id="@+id/location_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="300dp"
+        android:backgroundTint="@color/ddddff"
+        android:textColor="@color/purple"
+        android:text="위치" />
+
+    <FrameLayout
+        android:id="@+id/main_bottomView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="352dp"
+        android:background="@color/semiblack">
+        <TextView
+            android:id="@+id/main_loaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="XX시 XX구 XX로"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"/>
+        <ImageView
+            android:id="@+id/main_amWeather"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_launcher_foreground"
+            android:layout_gravity="right"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="80dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="|"
+            android:textColor="@color/black"
+            android:textSize="40dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="70dp"/>
+        <ImageView
+            android:id="@+id/main_pmWeather"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_launcher_foreground"
+            android:layout_gravity="right"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="30dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="오전"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:layout_gravity="right"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="84dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="오후"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:layout_gravity="right"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="34dp"/>
+        <TextView
+            android:id="@+id/main_pastToday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="N년전 오늘"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="30dp"/>
+        <ImageView
+            android:id="@+id/main_pastPicture"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:src="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="bottom"
+        android:background="@color/semiblack">
+        <ImageView
+            android:id="@+id/main_toHome"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@color/black"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="30dp"/>
+        <ImageView
+            android:id="@+id/main_addDiary"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@color/black"
+            android:layout_gravity="bottom|center"/>
+        <ImageView
+            android:id="@+id/main_myInfo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@color/black"
+            android:layout_gravity="right|bottom"
+            android:layout_marginRight="30dp"/>
+    </FrameLayout>
+
+</FrameLayout>
