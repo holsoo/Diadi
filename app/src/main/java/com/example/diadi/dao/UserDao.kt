@@ -13,7 +13,7 @@ interface UserDao {
     @Query("SELECT * FROM User WHERE userId = :userId")
     fun findUserById(userId : Long): User?
 
-    @Query("SELECT * FROM User WHERE User.nickname = :nickname")
+    @Query("SELECT * FROM User WHERE nickname = :nickname")
     fun findUserByNickname(nickname : String): User?
 
     @Query("SELECT * FROM User")

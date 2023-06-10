@@ -20,4 +20,10 @@ class UserRepository @Inject constructor(
             userDao.insertUser(user)
         }
     }
+
+    fun isNicknameExists(nickname: String): Boolean {
+        val user = userDao.findUserByNickname(nickname)
+
+        return user != null
+    }
 }

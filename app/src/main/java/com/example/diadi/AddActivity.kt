@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.diadi.databinding.ActivityAddBinding
 import java.io.FileNotFoundException
 
-class AddActivity :AppCompatActivity(){
+class AddActivity : AppCompatActivity() {
     lateinit var binding : ActivityAddBinding
     lateinit var galleryLauncher: ActivityResultLauncher<Intent>
 
