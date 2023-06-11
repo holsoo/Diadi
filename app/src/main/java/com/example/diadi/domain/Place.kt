@@ -12,19 +12,23 @@ data class Place(
     @ColumnInfo(name = "place_name")
     val placeName : String,
 
-    @ColumnInfo(name = "road_address_name")
-    val roadAddressName : String,
+    @ColumnInfo(name = "address")
+    val address : String,
 
-    @ColumnInfo(name = "category_group_name")
-    val categoryGroupName : String,
+    @ColumnInfo(name = "category")
+    val category : String,
 
-    val longitude : String,
+    val x : String, // longitude
 
-    val latitude : String,
+    val y : String, // latitude
 
     @ColumnInfo(name = "is_favorite")
     val isFavorite : Boolean = false,
 
     @ColumnInfo(name = "diary_count")
     var diaryCount: Int = 0
-)
+) {
+    fun incrementDiaryCount() {
+        diaryCount++
+    }
+}

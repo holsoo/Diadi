@@ -43,11 +43,15 @@ class SearchActivity : AppCompatActivity() {
         binding.rvList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvList.adapter = searchAdapter
 
-        // 검색 후 item 클릭시.
+        // 1-2 사용자가 키워드 검색 후 장소 아이템 클릭하면 발생하는 이벤트!
         searchAdapter.setItemClickListener(object: SearchAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
                 val mapPoint = MapPoint.mapPointWithGeoCoord(searchItems[position].y, searchItems[position].x)
                 binding.mapView.setMapCenterPointAndZoomLevel(mapPoint, 2, true)
+
+                // 1-3 여기서 이 이벤트가 한번 발생하고 나서(선택한 장소가 있을 때), 저장 버튼을 누르면 그 장소 정보를 다시 addActivity로 반환
+                // 이러면 저장 버튼이 눌렸을때 event listener가 하나 있어야 하고.
+                // 그 리스너에서는 searchItems[position]을 반환하면 돼..! 그냥 return searchItems[position]
             }
         })
 
@@ -73,7 +77,7 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
-
+    // 검색 기능
     private fun search(keyword : String, page : Int) {
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -102,9 +106,10 @@ class SearchActivity : AppCompatActivity() {
         )
     }
 
+    // 검색 결과 recyclerView에 display
     private fun showSearchResult(searchResult : SearchResultPageDto?) {
         if(!searchResult?.documents.isNullOrEmpty()) {
-            // 검색 결과 x
+            // 검색 결과 x -> 마커 제거.
             searchItems.clear()
             binding.mapView.removeAllPOIItems()
 
@@ -131,6 +136,7 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
+    // item 클릭시 해당 위치 표시할 마커 추가
     private fun addMarkerOnMap(document: SearchResultDto) {
         val point = MapPOIItem()
         point.apply {

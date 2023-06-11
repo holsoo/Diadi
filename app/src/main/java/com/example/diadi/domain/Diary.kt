@@ -15,11 +15,6 @@ import java.util.Date
             parentColumns = ["placeId"],
             childColumns = ["place_id"],
             onDelete = ForeignKey.CASCADE
-        ),
-        ForeignKey(
-            entity = User::class,
-            parentColumns = ["userId"],
-            childColumns = ["user_id"]
         )
     ],
     indices = [Index(value = ["place_id"])]
@@ -37,11 +32,8 @@ data class Diary (
 
     val weather : Weathers,
 
-    @ColumnInfo(name = "user_id")
-    var userId : Long,
-
     @ColumnInfo(name = "place_id")
-    var placeId : Long,
+    var placeId : Int,
 
     @ColumnInfo(name = "created_at")
     val createdAt: Date = Date()
