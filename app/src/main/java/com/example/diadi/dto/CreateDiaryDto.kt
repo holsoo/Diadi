@@ -4,22 +4,19 @@ import com.example.diadi.common.enums.Weathers
 import com.example.diadi.domain.Diary
 
 data class CreateDiaryDto(
-    var diaryId: Long,
     var title: String,
     var content: String,
     var imageUrl: String,
     var weather: Weathers,
-    var userId: Long,
-    var placeId: Long
+    var placeId: Int
 ) {
     fun toEntity(): Diary {
         return Diary(
-            diaryId = diaryId,
+            diaryId = 0,
             title = title,
             content = content,
             imageUrl = imageUrl,
             weather = weather,
-            userId = userId,
             placeId = placeId
         )
     }
