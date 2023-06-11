@@ -1,4 +1,4 @@
-package com.example.diadi
+package com.example.diadi.view
 
 import android.Manifest
 import android.content.Context
@@ -20,12 +20,8 @@ import com.example.diadi.databinding.ActivityMainBinding
 import com.example.diadi.viewmodel.UserViewModel
 
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapView
-import kotlin.text.Typography.dagger
 
 
 @AndroidEntryPoint

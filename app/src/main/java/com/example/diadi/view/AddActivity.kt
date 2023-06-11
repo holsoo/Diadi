@@ -1,4 +1,4 @@
-package com.example.diadi
+package com.example.diadi.view
 
 import android.content.Intent
 import android.graphics.BitmapFactory
