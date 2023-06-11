@@ -1,4 +1,4 @@
-package com.example.diadi
+package com.example.diadi.view
 
 import android.os.Bundle
 import android.widget.Toast
