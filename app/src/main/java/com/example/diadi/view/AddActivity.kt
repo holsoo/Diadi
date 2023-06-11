@@ -5,7 +5,9 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+
 import android.widget.Toast
+
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -13,10 +15,12 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.diadi.common.enums.Weathers
 import com.example.diadi.databinding.ActivityAddBinding
 import com.example.diadi.dto.CreateDiaryDto
+
 import com.example.diadi.dto.SavePlaceDto
 import com.example.diadi.dto.SearchResultDto
 import com.example.diadi.viewmodel.DiaryViewModel
 import com.example.diadi.viewmodel.PlaceViewModel
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,9 +30,11 @@ class AddActivity : AppCompatActivity() {
     lateinit var binding : ActivityAddBinding
     lateinit var galleryLauncher: ActivityResultLauncher<Intent>
     lateinit var diaryViewModel: DiaryViewModel
+
     lateinit var placeViewModel: PlaceViewModel
     lateinit var searchResultDto: SearchResultDto
     lateinit var diaryImageUri : Uri
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -137,7 +143,6 @@ class AddActivity : AppCompatActivity() {
             }
         }
     }
-
     // 이미지 화면에 표시
     private fun showImage(uri: Uri) {
         try {
@@ -146,6 +151,7 @@ class AddActivity : AppCompatActivity() {
             binding.addAddPicture.setImageBitmap(bitmap)
 
             diaryImageUri = uri; // db에 저장하기 위한 image uri
+
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
         }

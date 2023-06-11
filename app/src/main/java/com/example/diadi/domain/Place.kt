@@ -32,3 +32,4 @@ data class Place(
         diaryCount++
     }
 }
+

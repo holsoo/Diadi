@@ -48,7 +48,7 @@ class SearchActivity : AppCompatActivity() {
             override fun onClick(v: View, position: Int) {
                 val mapPoint = MapPoint.mapPointWithGeoCoord(searchItems[position].y, searchItems[position].x)
                 binding.mapView.setMapCenterPointAndZoomLevel(mapPoint, 2, true)
-
+                
                 // 1-3 여기서 이 이벤트가 한번 발생하고 나서(선택한 장소가 있을 때), 저장 버튼을 누르면 그 장소 정보를 다시 addActivity로 반환
                 // 이러면 저장 버튼이 눌렸을때 event listener가 하나 있어야 하고.
                 // 그 리스너에서는 searchItems[position]을 반환하면 돼..! 그냥 return searchItems[position]
