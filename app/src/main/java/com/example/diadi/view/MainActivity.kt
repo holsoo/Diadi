@@ -1,4 +1,4 @@
-package com.example.diadi
+package com.example.diadi.view
 
 import android.Manifest
 import android.content.Context
@@ -20,9 +20,7 @@ import com.example.diadi.databinding.ActivityMainBinding
 import com.example.diadi.viewmodel.UserViewModel
 
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapView
 import kotlin.text.Typography.dagger
 
@@ -31,6 +29,7 @@ import kotlin.text.Typography.dagger
 class MainActivity : AppCompatActivity() {
     private val ACCESS_FINE_LOCATION = 1000
     lateinit var binding : ActivityMainBinding
+    lateinit var mapView : MapView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,16 +40,41 @@ class MainActivity : AppCompatActivity() {
 
         // 사용자가 gps 기능을 활성화했는지 체크
         activateGPS()
+
+        mapView = binding.mapView
+
+        val marker = MapPOIItem()
+        // diary에 저장된 위치명, 위치 좌표 (longitude, latitude) 불러와서 저장하는 코드 필요
+        // 위치명, 좌표, 해당 위치의 일기 수
+        // 이렇게 3개의 column으로 해서 2차원 배열에 저장하면 될듯
+
+        marker.apply {
+            // itemName = 위치명
+            // mapPoint = MapPoint.mapPointWithGeoCoord(longitude, latitude)
+            // markerType = MapPOIItem.MarkerType.CustomImage
+            // selectedMarkerType = MapPOIItem.MarkerType.CustomImage
+            // when (해당 위치의 일기 수) {
+            //     1 -> {
+            //         customImageResourceId = R.drawable.마커1
+            //         customSelectedImageResourceId = R.drawable.보라마커1
+            //     2 -> {
+            //         customImageResourceId = R.drawable.마커2
+            //         customSelectedImageResourceId = R.drawable.보라마커2
+            //     .
+            //     .
+            //     9 -> {
+            //         customImageResourceId = R.drawable.마커9
+            //         customSelectedImageResourceId = R.drawable.보라마커9
+            //     else -> {
+            //         customImageResourceId = R.drawable.마커10
+            //         customSelectedImageResourceId = R.drawable.보라마커10
+            // isCustomImageAutoscale = false
+            // setCustomImageAnchor(0.5f, 1.0f)
+
+            // 이거랑 marker에 onClickListener 넣어서 누르면 일기목록 뜨게 해야되는데
+        }
+        mapView.addPOIItem(marker)
     }
-
-//      1. 요기다가 insertUser 로직 작성해주시면 됩니다.
-//    private fun insertUser(userViewModel : UserViewModel) {
-//      요기다가 insertUser 로직 작성해주시면 됩니다.
-
-//    CoroutineScope(Dispatchers.IO).launch {
-//        userViewModel.joinUser("유원준")
-//    }
-//    }
 
     // 2. 추적 시작 코드가 아래 코드인데요,
     // 버튼 만드시고 추적 시작때는 아래 if문 실행해주시면 됩니다.

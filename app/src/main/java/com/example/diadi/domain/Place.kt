@@ -23,5 +23,8 @@ data class Place(
     val latitude : String,
 
     @ColumnInfo(name = "is_favorite")
-    val isFavorite : Boolean = false
+    val isFavorite : Boolean = false,
+
+    @ColumnInfo(name = "diary_count")
+    var diaryCount: Int = 0
 )

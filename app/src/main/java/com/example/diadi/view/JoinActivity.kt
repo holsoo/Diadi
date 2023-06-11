@@ -1,9 +1,10 @@
-package com.example.diadi
+package com.example.diadi.view
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.example.diadi.databinding.ActivityLoginBinding
+import com.example.diadi.databinding.ActivityJoinBinding
 import com.example.diadi.viewmodel.UserViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -11,14 +12,11 @@ import kotlinx.coroutines.launch
 
 class JoinActivity : AppCompatActivity() {
     private lateinit var userViewModel: UserViewModel
-
-    // 여기 binding도 Activity_login을 Activity_join으로 바꿔야 하는데 한번 바꿨다가 오류 엄청 떠서
-    // 코드 복붙해두고 다시 옮겼어요 ㅜ
-    lateinit var binding: ActivityLoginBinding
+    lateinit var binding: ActivityJoinBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivityJoinBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
@@ -31,6 +29,7 @@ class JoinActivity : AppCompatActivity() {
         }
 
         val nickname = binding.editTextNickname.toString()
+
         join(nickname)
     }
 
@@ -43,5 +42,6 @@ class JoinActivity : AppCompatActivity() {
 
     private fun showErrorMessage(message: String) {
         // 메시지를 화면에 표시하는 로직 구현
+        Toast.makeText(getApplicationContext(),"사용할 수 없는 닉네임입니다.", Toast.LENGTH_LONG).show()
     }
 }
