@@ -1,11 +1,15 @@
 package com.example.diadi.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.diadi.R
 import com.example.diadi.common.api.KakaoAPI
 import com.example.diadi.databinding.ActivitySearchBinding
 import com.example.diadi.dto.SearchResultDto
@@ -39,6 +43,7 @@ class SearchActivity : AppCompatActivity() {
         binding = ActivitySearchBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        val saveBtn : Button = findViewById(R.id.btn_save)
 
         binding.rvList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvList.adapter = searchAdapter
@@ -48,10 +53,22 @@ class SearchActivity : AppCompatActivity() {
             override fun onClick(v: View, position: Int) {
                 val mapPoint = MapPoint.mapPointWithGeoCoord(searchItems[position].y, searchItems[position].x)
                 binding.mapView.setMapCenterPointAndZoomLevel(mapPoint, 2, true)
-                
+
+                saveBtn.visibility = View.VISIBLE
+                saveBtn.setOnClickListener {
+                    val intent = Intent(this@SearchActivity, AddActivity::class.java)
+                    intent.putExtra("y", searchItems[position].y)
+                    intent.putExtra("x", searchItems[position].x)
+                    intent.putExtra("name", searchItems[position].name)
+                    intent.putExtra("category", searchItems[position].category)
+                    intent.putExtra("address", searchItems[position].address)
+                }
+
                 // 1-3 여기서 이 이벤트가 한번 발생하고 나서(선택한 장소가 있을 때), 저장 버튼을 누르면 그 장소 정보를 다시 addActivity로 반환
                 // 이러면 저장 버튼이 눌렸을때 event listener가 하나 있어야 하고.
                 // 그 리스너에서는 searchItems[position]을 반환하면 돼..! 그냥 return searchItems[position]
+
+                // 아이템 클릭 시 저장 버튼이 활성화되고, 저장 버튼을 누르면 putExtra로 위도와 경도 데이터를 내보내게 설계했음 (완료)
             }
         })
 
