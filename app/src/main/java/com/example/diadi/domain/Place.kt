@@ -10,17 +10,17 @@ data class Place(
     val placeId : Int = 0,
 
     @ColumnInfo(name = "place_name")
-    val placeName : String,
+    val placeName : String?,
 
     @ColumnInfo(name = "address")
-    val address : String,
+    val address : String?,
 
     @ColumnInfo(name = "category")
-    val category : String,
+    val category : String?,
 
-    val x : String, // longitude
+    val x : Double, // longitude
 
-    val y : String, // latitude
+    val y : Double, // latitude
 
     @ColumnInfo(name = "is_favorite")
     val isFavorite : Boolean = false,

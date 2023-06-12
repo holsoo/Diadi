@@ -56,11 +56,31 @@ class AddActivity : AppCompatActivity() {
 
         val searchEditText = binding.addAddPlace
         searchEditText.setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+
+            val receiveIntent = intent
+            val y = intent.getDoubleExtra("y", 0.0)
+            val x = intent.getDoubleExtra("x", 0.0)
+            val name = intent.getStringExtra("name")
+            val category = intent.getStringExtra("category")
+            val address = intent.getStringExtra("address")
+
+            searchResultDto.x = x
+            searchResultDto.y = y
+            searchResultDto.place_name = name
+            searchResultDto.category_group_name = category
+            searchResultDto.road_address_name = address
+
+            // SearchActivity.kt로 페이지 이동
             // 동혁이형이 해야 할것.
             // 1-1 searchActivity로 이동
-            // 장소를 찾아주는 searchActivity.kt로 페이지 이동하도록 해야 함
-            // 1-3의 반환값을 받는다. 반환값은 아래와 같다.
+            // 장소를 찾아주는 searchActivity.kt로 페이지 이동하도록 해야 함 (완료)
+
+            // 1-3의 반환값을 받는다. 반환값은 아래와 같다. (완료)
             // searchResultDto = 아까 반환한 searchItems[pointer] 를 lateinit으로 선언된 이 변수에 저장.
+            // y와 x 옆의 0.0은 전달된 값이 없을경우 기본값
+            // searchResultDto에서 x, y 타입 Double로 변경하고 나머지는 string? 으로 변경
         }
 
         // 이미지 저장 리스너 코드 등록
@@ -122,6 +142,7 @@ class AddActivity : AppCompatActivity() {
             address = searchResultDto.road_address_name,
             x = searchResultDto.x,
             y = searchResultDto.y
+        // savePlaceDto 의 타입들도 변경함(String > String>, x랑 y는 double로). 이어서 place도 변경함!
         )
 
         CoroutineScope(Dispatchers.IO).launch {
