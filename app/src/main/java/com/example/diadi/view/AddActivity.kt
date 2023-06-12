@@ -114,14 +114,14 @@ class AddActivity : AppCompatActivity() {
             val diaryDate: EditText = findViewById(R.id.add_addDate)
             val diaryPlace: EditText = findViewById(R.id.add_addPlace)
 //        1-4 여기에 리스너 위의 두줄처럼 달고, onClickAddDiaryButton 파라미터 담아서 실행시켜줘
-            onClickAddDiaryButton(
-                title: String,
-                content: String,
-                imageUrl: String,
-                weather: Weathers
+            //onClickAddDiaryButton(
+                //title: String,
+                //content: String,
+                //imageUrl: String,
+                //weather: Weathers
                 // 여기를 어떻게 해야할지 모르겠네??????
                 // 일단 diaryWeather() 하면 선택된 버튼의 날씨 호출 될거야
-              )
+              //)
         }
         // 저 파라미터는 유저가 작성 화면에서 입력한 editText.text값이야 그냥 binding해서 넣기.
 
