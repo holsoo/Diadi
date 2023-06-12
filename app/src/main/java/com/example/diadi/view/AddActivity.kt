@@ -1,17 +1,25 @@
 package com.example.diadi.view
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 
 import android.widget.Toast
 
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.example.diadi.R
 import com.example.diadi.common.enums.Weathers
 import com.example.diadi.databinding.ActivityAddBinding
 import com.example.diadi.dto.CreateDiaryDto
@@ -84,19 +92,38 @@ class AddActivity : AppCompatActivity() {
         }
 
         // 이미지 저장 리스너 코드 등록
-//        val saveDiaryButton = binding.addAddDiaryButton
-//        saveDiaryButton.setOnClickListener {
+        val addImage : Button = findViewById(R.id.add_addPictureButton)
+        var inputImage: ImageView = findViewById(R.id.add_addPicture)
+
+        addImage.setOnClickListener {
+            onClickGalleryButton()
+            // 갤러리 열고
+            initGallery()
+            // diaryImageUri 에 Uri 저장 됐으니 이거를 ImageView에 넘겨주면
+            if (diaryImageUri != null) {
+                val uri = Uri.parse(diaryImageUri.toString())
+                inputImage.setImageURI(uri)
+            }
+            // ImageView로 해당 이미지 넘겨주기 완료
+        }
+
+        val saveDiaryButton = binding.addAddDiaryButton
+        saveDiaryButton.setOnClickListener {
+            val diaryImage: ImageView = findViewById(R.id.add_addPicture)
+            val diaryTitle: EditText = findViewById(R.id.add_addTitle)
+            val diaryDate: EditText = findViewById(R.id.add_addDate)
+            val diaryPlace: EditText = findViewById(R.id.add_addPlace)
 //        1-4 여기에 리스너 위의 두줄처럼 달고, onClickAddDiaryButton 파라미터 담아서 실행시켜줘
-
-//            onClickAddDiaryButton(
-        //        title: String,
-        //        content: String,
-        //        imageUrl: String,
-        //        weather: Weathers
-//              )
-//        }
+            onClickAddDiaryButton(
+                title: String,
+                content: String,
+                imageUrl: String,
+                weather: Weathers
+                // 여기를 어떻게 해야할지 모르겠네??????
+                // 일단 diaryWeather() 하면 선택된 버튼의 날씨 호출 될거야
+              )
+        }
         // 저 파라미터는 유저가 작성 화면에서 입력한 editText.text값이야 그냥 binding해서 넣기.
-
 
         // 1-5 저장 버튼 끝나면 저장 완료되었을테고 이제 마커를 추가하는 코드 작성하면 될듯..?
         // 마커 추가는 SearchActivity의 addMarkerOnMap(document: SearchResultDto) 참고해도 좋슴다
@@ -142,7 +169,6 @@ class AddActivity : AppCompatActivity() {
             address = searchResultDto.road_address_name,
             x = searchResultDto.x,
             y = searchResultDto.y
-        // savePlaceDto 의 타입들도 변경함(String > String>, x랑 y는 double로). 이어서 place도 변경함!
         )
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -176,5 +202,33 @@ class AddActivity : AppCompatActivity() {
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
         }
+    }
+
+    // 선택된 날씨 가져오기
+    private var selectedButton: Button? = null
+    private var selectedValue: String? = null
+    private fun diaryWeather() {
+
+        val sunnyBtn: Button = findViewById(R.id.add_sunny)
+        val cloudyBtn: Button = findViewById(R.id.add_cloudy)
+        val rainyBtn: Button = findViewById(R.id.add_rainy)
+        val snowyBtn: Button = findViewById(R.id.add_snowy)
+
+        sunnyBtn.setOnClickListener { selectButton(sunnyBtn, Weathers.SUNNY.toString()) }
+        cloudyBtn.setOnClickListener { selectButton(cloudyBtn, Weathers.CLOUDY.toString()) }
+        rainyBtn.setOnClickListener { selectButton(rainyBtn, Weathers.RAINY.toString()) }
+        snowyBtn.setOnClickListener { selectButton(snowyBtn, Weathers.SNOWY.toString()) }
+    }
+
+    // 버튼 선택
+    private fun selectButton(button: Button, value: String): String? {
+        selectedButton?.let {
+            it.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, android.R.color.transparent))
+        }
+        button.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.ddddff))
+        selectedButton = button
+        selectedValue = value
+
+        return selectedValue
     }
 }

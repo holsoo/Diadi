@@ -23,7 +23,7 @@
         android:theme="@style/Theme.Diadi"
         tools:targetApi="33">
         <activity
-            android:name=".view.SearchActivity"
+            android:name=".view.JoinActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
