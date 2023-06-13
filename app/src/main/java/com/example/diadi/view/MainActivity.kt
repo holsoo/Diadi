@@ -95,18 +95,7 @@ class MainActivity : AppCompatActivity() {
     // 마커 클릭 이벤트 리스너
     class MarkerEventListener(val context: Context): MapView.POIItemEventListener {
         override fun onPOIItemSelected(mapView: MapView?, poiItem: MapPOIItem?) {
-            // when (해당 위치의 일기 수) {
-            //     1 -> {
-            //         customImageResourceId = R.drawable.보라마커1
-            //     2 -> {
-            //         customImageResourceId = R.drawable.보라마커2
-            //     .
-            //     .
-            //     9 -> {
-            //         customImageResourceId = R.drawable.보라마커9
-            //     else -> {
-            //         customImageResourceId = R.drawable.보라마커10
-            //     }
+
         }
 
         override fun onCalloutBalloonOfPOIItemTouched(p0: MapView?, p1: MapPOIItem?) {

@@ -54,6 +54,12 @@ class AddActivity : AppCompatActivity() {
 
         initGallery()
 
+        val backButton = binding.addToPrev
+        backButton.setOnClickListener {
+            val backIntent = Intent(this, MainActivity::class.java)
+            startActivity(backIntent)
+        }
+
         val galleryButton = binding.addAddPictureButton
         galleryButton.setOnClickListener {
             onClickGalleryButton()
