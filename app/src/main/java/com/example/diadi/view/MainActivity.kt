@@ -8,6 +8,9 @@ import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
@@ -15,12 +18,17 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.example.diadi.R
 
 import com.example.diadi.databinding.ActivityMainBinding
+import com.example.diadi.domain.Place
+import com.example.diadi.dto.SavePlaceDto
 import com.example.diadi.viewmodel.UserViewModel
 
 import dagger.hilt.android.AndroidEntryPoint
+import net.daum.mf.map.api.CalloutBalloonAdapter
 import net.daum.mf.map.api.MapPOIItem
+import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
 
 
@@ -29,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     private val ACCESS_FINE_LOCATION = 1000
     lateinit var binding : ActivityMainBinding
     lateinit var mapView : MapView
+    lateinit var SavePlaceDto : SavePlaceDto
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,37 +52,67 @@ class MainActivity : AppCompatActivity() {
         mapView = binding.mapView
 
         val marker = MapPOIItem()
-        // diary에 저장된 위치명, 위치 좌표 (longitude, latitude) 불러와서 저장하는 코드 필요
-        // 위치명, 좌표, 해당 위치의 일기 수
-        // 이렇게 3개의 column으로 해서 2차원 배열에 저장하면 될듯
+        val saveToken =  intent.getStringExtra("save")
 
-        marker.apply {
-            // itemName = 위치명
-            // mapPoint = MapPoint.mapPointWithGeoCoord(longitude, latitude)
-            // markerType = MapPOIItem.MarkerType.CustomImage
-            // selectedMarkerType = MapPOIItem.MarkerType.CustomImage
-            // when (해당 위치의 일기 수) {
-            //     1 -> {
-            //         customImageResourceId = R.drawable.마커1
-            //         customSelectedImageResourceId = R.drawable.보라마커1
-            //     2 -> {
-            //         customImageResourceId = R.drawable.마커2
-            //         customSelectedImageResourceId = R.drawable.보라마커2
-            //     .
-            //     .
-            //     9 -> {
-            //         customImageResourceId = R.drawable.마커9
-            //         customSelectedImageResourceId = R.drawable.보라마커9
-            //     else -> {
-            //         customImageResourceId = R.drawable.마커10
-            //         customSelectedImageResourceId = R.drawable.보라마커10
-            // isCustomImageAutoscale = false
-            // setCustomImageAnchor(0.5f, 1.0f)
-
-            // 이거랑 marker에 onClickListener 넣어서 누르면 일기목록 뜨게 해야되는데
+        if (saveToken!=null) {
+            val longitude = SavePlaceDto.x
+            val latitude = SavePlaceDto.y
+            val placeName = SavePlaceDto.placeName
+            marker.apply{
+                itemName = placeName
+                mapPoint = MapPoint.mapPointWithGeoCoord(longitude, latitude)
+                markerType = MapPOIItem.MarkerType.CustomImage
+                customImageResourceId = R.drawable.black
+                selectedMarkerType = MapPOIItem.MarkerType.CustomImage
+                customSelectedImageResourceId = R.drawable.purple
+                isCustomImageAutoscale = false
+                setCustomImageAnchor(0.5f, 1.0f)
+            }
+            mapView.addPOIItem(marker)
         }
-        mapView.addPOIItem(marker)
     }
+
+    // 커스텀 말풍선 클래스
+    class CustomBalloonAdapter(inflater: LayoutInflater): CalloutBalloonAdapter {
+        val mCalloutBalloon: View = inflater.inflate(R.layout.balloon_layout, null)
+        val name: TextView = mCalloutBalloon.findViewById(R.id.ball_tv_name)
+        val address: TextView = mCalloutBalloon.findViewById(R.id.ball_tv_address)
+
+        override fun getCalloutBalloon(poiItem: MapPOIItem?): View {
+            // 마커 클릭 시 나오는 말풍선
+            name.text = poiItem?.itemName
+            address.text = "getCalloutBalloon"
+            return mCalloutBalloon
+        }
+
+        override fun getPressedCalloutBalloon(poiItem: MapPOIItem?): View {
+            // 말풍선 클릭 시
+            address.text = "getPressedCalloutBalloon"
+            return mCalloutBalloon
+        }
+    }
+
+    // 마커 클릭 이벤트 리스너
+    class MarkerEventListener(val context: Context): MapView.POIItemEventListener {
+        override fun onPOIItemSelected(mapView: MapView?, poiItem: MapPOIItem?) {
+
+        }
+
+        override fun onCalloutBalloonOfPOIItemTouched(p0: MapView?, p1: MapPOIItem?) {
+        }
+
+        override fun onCalloutBalloonOfPOIItemTouched(
+            p0: MapView?,
+            p1: MapPOIItem?,
+            p2: MapPOIItem.CalloutBalloonButtonType?
+        ) {
+        }
+
+        override fun onDraggablePOIItemMoved(p0: MapView?, p1: MapPOIItem?, p2: MapPoint?) {
+        }
+    }
+
+
 
     // 2. 추적 시작 코드가 아래 코드인데요,
     // 버튼 만드시고 추적 시작때는 아래 if문 실행해주시면 됩니다.

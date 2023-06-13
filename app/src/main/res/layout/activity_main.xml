@@ -26,22 +26,10 @@
         android:id="@+id/main_search"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/ic_launcher_foreground"
+        android:src="@drawable/search"
         android:layout_gravity="right"
         android:layout_marginTop="30dp"
         android:layout_marginRight="30dp" />
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/black"
-        android:layout_marginTop="200dp"
-        android:layout_marginLeft="100dp"/>
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/purple2"
-        android:layout_marginTop="200dp"
-        android:layout_marginLeft="200dp"/>
 
     <Button
         android:id="@+id/location_button"
@@ -49,86 +37,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_gravity="right"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="600dp"
         android:backgroundTint="@color/ddddff"
         android:textColor="@color/purple"
         android:text="위치" />
-
-    <FrameLayout
-        android:id="@+id/main_bottomView"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="352dp"
-        android:background="@color/semiblack">
-        <TextView
-            android:id="@+id/main_loaction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="XX시 XX구 XX로"
-            android:textColor="@color/black"
-            android:textSize="25dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"/>
-        <ImageView
-            android:id="@+id/main_amWeather"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_launcher_foreground"
-            android:layout_gravity="right"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="80dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="|"
-            android:textColor="@color/black"
-            android:textSize="40dp"
-            android:layout_gravity="right"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="70dp"/>
-        <ImageView
-            android:id="@+id/main_pmWeather"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_launcher_foreground"
-            android:layout_gravity="right"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="30dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="오전"
-            android:textSize="18dp"
-            android:textColor="@color/black"
-            android:layout_gravity="right"
-            android:layout_marginTop="60dp"
-            android:layout_marginRight="84dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="오후"
-            android:textSize="18dp"
-            android:textColor="@color/black"
-            android:layout_gravity="right"
-            android:layout_marginTop="60dp"
-            android:layout_marginRight="34dp"/>
-        <TextView
-            android:id="@+id/main_pastToday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="N년전 오늘"
-            android:textColor="@color/black"
-            android:textSize="25dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginLeft="30dp"/>
-        <ImageView
-            android:id="@+id/main_pastPicture"
-            android:layout_width="300dp"
-            android:layout_height="100dp"
-            android:src="@color/black"
-            android:layout_gravity="center"
-            android:layout_marginTop="60dp"/>
-    </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
