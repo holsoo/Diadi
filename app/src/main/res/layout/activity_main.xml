@@ -129,20 +129,21 @@
             android:layout_height="80dp"
             android:src="@color/black"
             android:layout_gravity="bottom"
-            android:layout_marginLeft="30dp"/>
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/home"/>
         <ImageView
             android:id="@+id/main_addDiary"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@color/black"
-            android:layout_gravity="bottom|center"/>
+            android:layout_gravity="bottom|center"
+            android:background="@drawable/add"/>
         <ImageView
             android:id="@+id/main_myInfo"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@color/black"
             android:layout_gravity="right|bottom"
-            android:layout_marginRight="30dp"/>
+            android:layout_marginRight="30dp"
+            android:background="@drawable/mypage"/>
     </FrameLayout>
 
 </FrameLayout>
