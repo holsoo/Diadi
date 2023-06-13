@@ -1,6 +1,7 @@
 package com.example.diadi.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.example.diadi.common.event.SingleLiveEvent
 import com.example.diadi.dto.CreateDiaryDto
 import com.example.diadi.repository.DiaryRepository
 
@@ -18,6 +19,12 @@ class DiaryViewModel @Inject constructor(
     fun createDiary (createDiaryDto: CreateDiaryDto) {
         CoroutineScope(Dispatchers.IO).launch {
             diaryRepository.insertDiary(createDiaryDto)
+        }
+    }
+
+    fun deleteDiary (id : Long) {
+        CoroutineScope(Dispatchers.IO).launch {
+            diaryRepository.deleteDiary(id)
         }
     }
 }

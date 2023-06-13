@@ -25,7 +25,7 @@ class IndividualActivity : AppCompatActivity() {
         }
 
         deleteButton.setOnClickListener {
-            // 일기 id 날려버린다고 했나? 그거 넣으면 되겠다
+
         }
     }
 }

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">diadi</string>
+    <string name="sunny">맑음</string>
+    <string name="cloudy">흐림</string>
+    <string name="rainy">비</string>
+    <string name="snowy">눈</string>
 </resources>

@@ -39,9 +39,11 @@
                 android:textSize="20dp"/>
 
             <Button
-                android:id="@+id/add_addPictureButton"
-                android:layout_height="1dp"
-                android:layout_width="1dp"/>
+                android:id="@+id/add_pictureButton"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp" />
 
             <ImageView
                 android:id="@+id/add_addPicture"

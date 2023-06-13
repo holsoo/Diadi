@@ -3,9 +3,9 @@ package com.example.diadi.dto
 import com.example.diadi.domain.Place
 
 data class SavePlaceDto(
-    val placeName : String?,
-    val category : String?,
-    val address : String?,
+    val placeName : String,
+    val category : String,
+    val address : String,
     val x : Double,
     val y : Double
 ) {
