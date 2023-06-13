@@ -69,6 +69,7 @@ class AddActivity : AppCompatActivity() {
             }
         }
 
+
         diaryWeather()
         diaryViewModel = ViewModelProvider(this)[DiaryViewModel::class.java]
 
@@ -166,6 +167,7 @@ class AddActivity : AppCompatActivity() {
             // 장소 등록
             val placeId = placeViewModel.savePlace(savePlaceDto)
             diaryWeathers = Weathers.ETC
+
 
             // 일기 등록
             val createDiaryDto = CreateDiaryDto(

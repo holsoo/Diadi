@@ -23,11 +23,12 @@
 
         <ImageView
             android:id="@+id/load_mainIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="122dp"
+            android:layout_height="131dp"
             android:layout_below="@+id/load_diady"
             android:layout_alignRight="@+id/load_diady"
-            android:src="@drawable/ic_launcher_background"/>
+            android:layout_marginTop="-4dp"
+            android:src="@drawable/logo" />
 
         <TextView
             android:id="@+id/load_mainText"
@@ -37,7 +38,7 @@
             android:layout_toLeftOf="@+id/load_mainIcon"
             android:width="280dp"
             android:height="100dp"
-            android:text="닉네임님이\n기록한지 0일째"
+            android:text=" 님이\n기록한지 0일째"
             android:textSize="30dp" />
     </RelativeLayout>
 

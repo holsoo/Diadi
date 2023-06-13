@@ -30,6 +30,7 @@ import net.daum.mf.map.api.CalloutBalloonAdapter
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
+import kotlin.text.Typography.dagger
 
 
 @AndroidEntryPoint

@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.diadi.common.event.SingleLiveEvent
+
 import com.example.diadi.domain.PlaceWithDiaries
+
 import com.example.diadi.dto.CreateDiaryDto
 import com.example.diadi.repository.DiaryRepository
 
