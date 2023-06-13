@@ -62,21 +62,13 @@ class AddActivity : AppCompatActivity() {
                 // 갤러리 접근 권한이 없는 경우 && 교육용 팝업을 보여줘야 하는 경우
                 shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE)
                 -> showPermissionContextPopup()
-                
+
                 // 권한 요청 하기
                 else -> requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
                     PICK_IMAGE_FROM_GALLERY_PERMISSION)
             }
-            
-        val backButton = binding.addToPrev
-        backButton.setOnClickListener {
-            val backIntent = Intent(this, MainActivity::class.java)
-            startActivity(backIntent)
         }
 
-        val galleryButton = binding.addAddPictureButton
-        galleryButton.setOnClickListener {
-            onClickGalleryButton()
 
         diaryWeather()
         diaryViewModel = ViewModelProvider(this)[DiaryViewModel::class.java]
@@ -174,7 +166,8 @@ class AddActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             // 장소 등록
             val placeId = placeViewModel.savePlace(savePlaceDto)
-                diaryWeathers = Weathers.ETC
+            diaryWeathers = Weathers.ETC
+
 
             // 일기 등록
             val createDiaryDto = CreateDiaryDto(
