@@ -1,6 +1,7 @@
 package com.example.diadi.repository
 
 import com.example.diadi.dao.DiaryDao
+import com.example.diadi.domain.Diary
 import com.example.diadi.dto.CreateDiaryDto
 import kotlinx.coroutines.CoroutineScope
 
@@ -17,6 +18,13 @@ class DiaryRepository @Inject constructor(
         CoroutineScope(Dispatchers.IO).launch {
             val diary = createDiaryDto.toEntity()
             diaryDao.insertDiary(diary)
+        }
+    }
+
+    fun deleteDiary(id : Long) {
+        CoroutineScope(Dispatchers.IO).launch {
+            var diary : Diary = diaryDao.findDiaryById(id)
+            diaryDao.deleteDiary(diary)
         }
     }
 }

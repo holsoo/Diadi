@@ -3,6 +3,7 @@ package com.example.diadi.common.di
 import android.app.Application
 import android.content.Context
 import com.example.diadi.dao.DiaryDao
+import com.example.diadi.dao.PlaceDao
 import com.example.diadi.dao.UserDao
 import com.example.diadi.database.DiadiDatabase
 import com.example.diadi.repository.DiaryRepository
@@ -45,4 +46,11 @@ object ProviderModule {
     fun provideContext(application: Application): Context {
         return application.applicationContext
     }
+
+    @Provides
+    @Singleton
+    fun providePlaceDao(context: Context): PlaceDao {
+        return DiadiDatabase.getInstance(context).placeDao()
+    }
 }
+

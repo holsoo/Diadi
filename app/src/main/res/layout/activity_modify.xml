@@ -18,35 +18,33 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
-                <ImageView
-                    android:id="@+id/add_toPrev"
+                <Button
+                    android:id="@+id/mod_toPrev"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/back"/>
+                    android:text="-"/>
                 <TextView
-                    android:id="@+id/add_writeDiary"
+                    android:id="@+id/mod_writeDiary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="30dp"
                     android:textSize="25dp"
-                    android:text="일기 기록하기"/>
+                    android:text="일기 수정하기"/>
             </LinearLayout>
             <TextView
-                android:id="@+id/add_picture"
+                android:id="@+id/mod_picture"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="사진"
                 android:textSize="20dp"/>
 
             <Button
-                android:id="@+id/add_pictureButton"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp" />
+                android:id="@+id/mod_addPictureButton"
+                android:layout_height="1dp"
+                android:layout_width="1dp"/>
 
             <ImageView
-                android:id="@+id/add_addPicture"
+                android:id="@+id/mod_addPicture"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:maxWidth="200dp"
@@ -56,63 +54,60 @@
                 android:onClick="onClick"
                 tools:ignore="SpeakableTextPresentCheck"/>
             <TextView
-                android:id="@+id/add_title"
+                android:id="@+id/mod_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="제목"
                 android:layout_marginTop="20dp"
                 android:textSize="20dp"/>
             <EditText
-                android:id="@+id/add_addTitle"
+                android:id="@+id/mod_addTitle"
                 android:background="@drawable/border"
                 android:layout_gravity="center"
                 android:layout_width="350dp"
                 android:layout_height="50dp"
-                android:layout_centerInParent="true"
-                android:hint="제목을 입력하세요"/>
+                android:layout_centerInParent="true" />
             <TextView
-                android:id="@+id/add_date"
+                android:id="@+id/mod_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="날짜"
                 android:layout_marginTop="20dp"
                 android:textSize="20dp"/>
             <EditText
-                android:id="@+id/add_addDate"
+                android:id="@+id/mod_addDate"
                 android:background="@drawable/border"
                 android:layout_gravity="center"
                 android:layout_width="350dp"
                 android:layout_height="50dp"
-                android:layout_centerInParent="true"
-                android:hint="날짜를 입력하세요"/>
+                android:layout_centerInParent="true"/>
             <TextView
-                android:id="@+id/add_place"
+                android:id="@+id/mod_place"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="장소"
                 android:layout_marginTop="20dp"
                 android:textSize="20dp"/>
             <EditText
-                android:id="@+id/add_addPlace"
+                android:id="@+id/mod_addPlace"
                 android:background="@drawable/border"
                 android:layout_gravity="center"
                 android:layout_width="350dp"
                 android:layout_height="50dp"
-                android:layout_centerInParent="true"
-                android:hint="장소를 입력하세요"/>
+                android:layout_centerInParent="true"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/add_weather"
+                    android:id="@+id/mod_weather"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="날씨"
                     android:textSize="20dp"/>
                 <Button
-                    android:id="@+id/add_sunny"
+                    android:id="@+id/mod_sunny"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -122,7 +117,7 @@
                     android:textColor="@color/purple"
                     android:text="맑음"/>
                 <Button
-                    android:id="@+id/add_cloudy"
+                    android:id="@+id/mod_cloudy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -132,7 +127,7 @@
                     android:textColor="@color/purple"
                     android:text="흐림"/>
                 <Button
-                    android:id="@+id/add_rainy"
+                    android:id="@+id/mod_rainy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -142,7 +137,7 @@
                     android:textColor="@color/purple"
                     android:text="비"/>
                 <Button
-                    android:id="@+id/add_snowy"
+                    android:id="@+id/mod_snowy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -153,7 +148,7 @@
                     android:text="눈"/>
             </LinearLayout>
             <TextView
-                android:id="@+id/add_diaryContent"
+                android:id="@+id/mod_diaryContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="일기내용"
@@ -161,17 +156,15 @@
                 android:layout_marginBottom="20dp"
                 android:textSize="20dp"/>
             <EditText
-                android:id="@+id/add_addDiaryContent"
+                android:id="@+id/mod_addDiaryContent"
                 android:background="@drawable/border"
                 android:layout_gravity="center"
                 android:layout_width="350dp"
                 android:layout_height="300dp"
-                android:layout_centerInParent="true"
-                android:hint="일기를 입력하세요."/>
+                android:layout_centerInParent="true"/>
 
-            <!-- 저장하기 버튼도 ui 수정 필요합니다!-->
             <Button
-                android:id="@+id/add_addDiaryButton"
+                android:id="@+id/mod_addDiaryButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/ddddff"

@@ -1,11 +1,15 @@
 package com.example.diadi.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.diadi.R
 import com.example.diadi.common.api.KakaoAPI
 import com.example.diadi.databinding.ActivitySearchBinding
 import com.example.diadi.dto.SearchResultDto
@@ -39,15 +43,26 @@ class SearchActivity : AppCompatActivity() {
         binding = ActivitySearchBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        val saveBtn : Button = findViewById(R.id.btn_save)
 
         binding.rvList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvList.adapter = searchAdapter
 
-        // 검색 후 item 클릭시.
+        // 사용자가 키워드 검색 후 장소 아이템 클릭하면 발생하는 이벤트!
         searchAdapter.setItemClickListener(object: SearchAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
                 val mapPoint = MapPoint.mapPointWithGeoCoord(searchItems[position].y, searchItems[position].x)
                 binding.mapView.setMapCenterPointAndZoomLevel(mapPoint, 2, true)
+
+                saveBtn.visibility = View.VISIBLE
+                saveBtn.setOnClickListener {
+                    val intent = Intent(this@SearchActivity, AddActivity::class.java)
+                    intent.putExtra("y", searchItems[position].y)
+                    intent.putExtra("x", searchItems[position].x)
+                    intent.putExtra("name", searchItems[position].name)
+                    intent.putExtra("category", searchItems[position].category)
+                    intent.putExtra("address", searchItems[position].address)
+                }
             }
         })
 
@@ -73,7 +88,7 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
-
+    // 검색 기능
     private fun search(keyword : String, page : Int) {
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -102,9 +117,10 @@ class SearchActivity : AppCompatActivity() {
         )
     }
 
+    // 검색 결과 recyclerView에 display
     private fun showSearchResult(searchResult : SearchResultPageDto?) {
         if(!searchResult?.documents.isNullOrEmpty()) {
-            // 검색 결과 x
+            // 검색 결과 x -> 마커 제거.
             searchItems.clear()
             binding.mapView.removeAllPOIItems()
 
@@ -113,8 +129,8 @@ class SearchActivity : AppCompatActivity() {
                     document.place_name,
                     document.category_group_name,
                     document.road_address_name,
-                    document.x.toDouble(),
-                    document.y.toDouble()
+                    document.x,
+                    document.y
                 )
 
                 searchItems.add(item)
@@ -131,11 +147,12 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
+    // item 클릭시 해당 위치 표시할 마커 추가
     private fun addMarkerOnMap(document: SearchResultDto) {
         val point = MapPOIItem()
         point.apply {
             itemName = document.place_name
-            mapPoint = MapPoint.mapPointWithGeoCoord(document.y.toDouble(), document.x.toDouble())
+            mapPoint = MapPoint.mapPointWithGeoCoord(document.y, document.x)
             markerType = MapPOIItem.MarkerType.RedPin
             selectedMarkerType = MapPOIItem.MarkerType.BluePin
         }

@@ -5,5 +5,5 @@ enum class Weathers (val state : String) {
     CLOUDY("흐림"),
     RAINY("비"),
     SNOWY("눈"),
-    FOGGY("안개")
+    ETC("기타")
 }
