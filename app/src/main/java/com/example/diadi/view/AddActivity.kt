@@ -165,7 +165,7 @@ class AddActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             // 장소 등록
             val placeId = placeViewModel.savePlace(savePlaceDto)
-                diaryWeathers = Weathers.ETC
+            diaryWeathers = Weathers.ETC
 
             // 일기 등록
             val createDiaryDto = CreateDiaryDto(
