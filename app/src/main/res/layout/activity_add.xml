@@ -18,11 +18,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
-                <Button
+                <ImageView
                     android:id="@+id/add_toPrev"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:text="-"/>
+                    android:src="@drawable/back"/>
                 <TextView
                     android:id="@+id/add_writeDiary"
                     android:layout_width="wrap_content"
