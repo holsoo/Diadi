@@ -3,7 +3,7 @@ package com.example.diadi.dto
 import com.example.diadi.common.enums.Weathers
 import com.example.diadi.domain.Diary
 
-data class CreateDiaryDto(
+data class UpdateDiaryDto(
     var title: String,
     var content: String,
     var imageUrl: String,
@@ -22,4 +22,3 @@ data class CreateDiaryDto(
         )
     }
 }
-
