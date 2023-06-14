@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 
@@ -71,6 +72,30 @@ class MainActivity : AppCompatActivity() {
             }
             mapView.addPOIItem(marker)
         }
+
+        /*if (현재위치에 일기 존재) {
+            val revisitBackground: View = findViewById(R.id.revisitMessageBackground)
+            val revisitMessage: TextView = findViewById(R.id.revisitMessage)
+            val addNowButton: Button = findViewById(R.id.addNow)
+            val noAddNowButton: Button = findViewById(R.id.noAddNow)
+
+            revisitBackground.visibility = View.VISIBLE
+            revisitMessage.visibility = View.VISIBLE
+            addNowButton.visibility = View.VISIBLE
+            noAddNowButton.visibility = View.VISIBLE
+
+            addNowButton.setOnClickListener {
+                val addDiaryIntent = Intent(this, AddActivity::class.java)
+                startActivity(addDiaryIntent)
+            }
+
+            noAddNowButton.setOnClickListener {
+                revisitBackground.visibility = View.INVISIBLE
+                revisitMessage.visibility = View.INVISIBLE
+                addNowButton.visibility = View.INVISIBLE
+                noAddNowButton.visibility = View.INVISIBLE
+            }
+        }*/
     }
 
     // 커스텀 말풍선 클래스
