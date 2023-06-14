@@ -1,3 +1,4 @@
-# 23-1 MC Final Project
-![모바일 컴퓨팅_다이어디_최종_와이어프레임](https://github.com/holsoo/Diadi/assets/85014114/38511192-795d-498f-867a-23acb98a414b)
+# 23-1 MC Final Project!
+[다이어디_최종_와이어프레임](https://github.com/holsoo/Diadi/assets/85014114/1a9eb8a3-2850-4682-821e-b146e6e1cb23)
+
 
