@@ -30,7 +30,7 @@ class DiaryRepository @Inject constructor(
 
     fun deleteDiary(id : Long) {
         CoroutineScope(Dispatchers.IO).launch {
-            var diary : Diary = diaryDao.findDiaryById(id)
+            var diary : Diary = DiaryDao.findDiaryById(id)
             diaryDao.deleteDiary(diary)
         }
     }
