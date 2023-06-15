@@ -70,21 +70,7 @@
                 android:layout_height="50dp"
                 android:layout_centerInParent="true"
                 android:hint="제목을 입력하세요"/>
-            <TextView
-                android:id="@+id/add_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="날짜"
-                android:layout_marginTop="20dp"
-                android:textSize="20dp"/>
-            <EditText
-                android:id="@+id/add_addDate"
-                android:background="@drawable/border"
-                android:layout_gravity="center"
-                android:layout_width="350dp"
-                android:layout_height="50dp"
-                android:layout_centerInParent="true"
-                android:hint="날짜를 입력하세요"/>
+
             <TextView
                 android:id="@+id/add_place"
                 android:layout_width="match_parent"
