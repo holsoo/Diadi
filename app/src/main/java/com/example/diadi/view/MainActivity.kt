@@ -124,6 +124,7 @@ class MainActivity : AppCompatActivity() {
             val listIntent = Intent(context, ListActivity::class.java)
             listIntent.putExtra("Place", poiItem?.itemName)
             listIntent.putExtra("x", poiItem?.mapPoint.toString())
+            listIntent.putExtra("y", poiItem?.mapPoint.toString())
             context.startActivity(listIntent)
         }
 
