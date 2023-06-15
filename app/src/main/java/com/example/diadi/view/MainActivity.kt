@@ -11,6 +11,7 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 
@@ -47,6 +48,14 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         var userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+
+        // 일기 작성 화면으로 가기
+        val addButton : ImageView = findViewById(R.id.main_addDiary)
+        addButton.setOnClickListener {
+            val goToAddIntent = Intent(this, AddActivity::class.java)
+            startActivity(goToAddIntent)
+        }
+
 
         // 사용자가 gps 기능을 활성화했는지 체크
         activateGPS()
