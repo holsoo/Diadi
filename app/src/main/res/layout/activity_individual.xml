@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/ind_diaryNumber"
+                    android:id="@+id/ind_order"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="200dp"
@@ -57,7 +57,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/ind_todayDate"
+                    android:id="@+id/ind_date"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"

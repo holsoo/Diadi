@@ -32,6 +32,7 @@ class ListActivity : AppCompatActivity() {
         diaryListAdapter.setItemClickListener(object: DiaryListAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
                 val intent = Intent(this@ListActivity, AddActivity::class.java)
+                intent.putExtra("id", listItems[position].imageUrl)
                 intent.putExtra("imageUrl", listItems[position].imageUrl)
                 intent.putExtra("name", listItems[position].placeName)
                 intent.putExtra("date", listItems[position].date)
@@ -43,26 +44,34 @@ class ListActivity : AppCompatActivity() {
     }
 
     private fun showDiaryResult(placeName: String, x : Double, y :Double) {
+        val placeName =  intent.getStringExtra("Place").toString()
+        val x = intent.getStringExtra("x")?.toDouble()
+        val y = intent.getStringExtra("y")?.toDouble()
 
         // 1. POI Item 리스너 추가가 필요함.
         // 2. 해당 리스너에서 ListActivity.kt로 옮겨오면서, 그 좌표의 장소명(place name), x, y 값을 받아온다.
         // 3. 저기 placeName, x, y에 잘 넣어준다.
-        val results: PlaceWithDiaries = diaryViewModel.getPlaceWithDiaries(x, y)
-        if (results != null) {
-            for (result in results.diaries) {
-                val item = ListLayout(
-                    diaryId = result.diaryId,
-                    imageUrl = result.imageUrl,
-                    placeId = result.placeId,
-                    placeName = placeName,
-                    title = result.title,
-                    content = result.content,
-                    date = result.createdAt.toString()
-                )
+        if (x != null && y!= null) {
+            val results: PlaceWithDiaries = diaryViewModel.getPlaceWithDiaries(x, y)
+            if (results != null) {
+                for (result in results.diaries) {
+                    val item = ListLayout(
+                        diaryId = result.diaryId,
+                        imageUrl = result.imageUrl,
+                        placeId = result.placeId,
+                        placeName = placeName,
+                        title = result.title,
+                        content = result.content,
+                        date = result.createdAt.toString(),
+                        x = x,
+                        y = y
+                    )
 
-                listItems.add(item)
+                    listItems.add(item)
+                }
+                diaryListAdapter.notifyDataSetChanged()
             }
-            diaryListAdapter.notifyDataSetChanged()
         }
+
     }
 }
