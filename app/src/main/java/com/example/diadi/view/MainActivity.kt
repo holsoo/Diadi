@@ -4,6 +4,8 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationListener
 import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
@@ -32,6 +34,8 @@ import net.daum.mf.map.api.CalloutBalloonAdapter
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
+import java.math.RoundingMode
+import java.text.DecimalFormat
 import kotlin.text.Typography.dagger
 
 
@@ -82,7 +86,13 @@ class MainActivity : AppCompatActivity() {
             mapView.addPOIItem(marker)
         }
 
-        /*if (현재위치에 일기 존재) {
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.DOWN
+        val curX = df.format(SavePlaceDto.x)
+        val curY = df.format(SavePlaceDto.y)
+
+
+        if (returnLat() == curX && returnLon() == curY) {
             val revisitBackground: View = findViewById(R.id.revisitMessageBackground)
             val revisitMessage: TextView = findViewById(R.id.revisitMessage)
             val addNowButton: Button = findViewById(R.id.addNow)
@@ -104,7 +114,7 @@ class MainActivity : AppCompatActivity() {
                 addNowButton.visibility = View.INVISIBLE
                 noAddNowButton.visibility = View.INVISIBLE
             }
-        }*/
+        }
     }
 
     // 커스텀 말풍선 클래스
@@ -235,11 +245,65 @@ class MainActivity : AppCompatActivity() {
     // 위치 트래킹 시작
     private fun startTracking() {
         binding.mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
+        val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
+        // 최소 업데이트 시간 간격 (1초)
+        val MIN_TIME_BETWEEN_UPDATES: Long = 1000
+
+        // 최소 거리 변화 (10미터)
+        val MIN_DISTANCE_CHANGE_FOR_UPDATES: Float = 10f
+
+        // 위치 제공자(GPS_PROVIDER)로부터 위치 업데이트 요청
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        }
+        locationManager.requestLocationUpdates(
+            LocationManager.GPS_PROVIDER,
+            MIN_TIME_BETWEEN_UPDATES,
+            MIN_DISTANCE_CHANGE_FOR_UPDATES,
+            locationListener
+        )
     }
 
     // 위치 트래킹 중지
     private fun stopTracking() {
         binding.mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOff
+    }
+
+    var currentLatitude: Double = 0.0
+    var currentLongitude: Double = 0.0
+
+    private val locationListener: LocationListener = object : LocationListener {
+        override fun onLocationChanged(location: Location) {
+            // 위치가 변경되었을 때 호출됩니다.
+            currentLatitude = location.latitude
+            currentLongitude = location.longitude
+            returnLat()
+            returnLon()
+        }
+    }
+
+    fun returnLat(): String {
+        val lat = currentLatitude
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.DOWN
+        val curLat = df.format(lat)
+        return curLat
+    }
+
+    fun returnLon(): String {
+        val lon = currentLongitude
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.DOWN
+        val curLon = df.format(lon)
+        return curLon
     }
 }
 
