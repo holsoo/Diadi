@@ -1,10 +1,8 @@
 package com.example.diadi.repository
 
-import androidx.lifecycle.LiveData
 import com.example.diadi.dao.DiaryDao
 import com.example.diadi.domain.Diary
 import com.example.diadi.domain.PlaceWithDiaries
-
 import com.example.diadi.dto.CreateDiaryDto
 import kotlinx.coroutines.CoroutineScope
 
@@ -24,13 +22,14 @@ class DiaryRepository @Inject constructor(
         }
     }
 
-    fun getPlaceWithDiaries(x: Double, y: Double): List<PlaceWithDiaries>{
+    fun getPlaceWithDiaries(x: Double, y: Double): PlaceWithDiaries
+    {
         return diaryDao.getPlaceWithDiaries(x, y)
     }
 
     fun deleteDiary(id : Long) {
         CoroutineScope(Dispatchers.IO).launch {
-            var diary : Diary = DiaryDao.findDiaryById(id)
+            var diary : Diary = diaryDao.findDiaryById(id)
             diaryDao.deleteDiary(diary)
         }
     }

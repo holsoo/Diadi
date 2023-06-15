@@ -1,41 +1,68 @@
 package com.example.diadi.view
 
-import DiaryListAdapter
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.diadi.databinding.ActivityListBinding
 import com.example.diadi.domain.PlaceWithDiaries
+import com.example.diadi.view.recycler.adapter.DiaryListAdapter
+import com.example.diadi.view.recycler.item.ListLayout
 import com.example.diadi.viewmodel.DiaryViewModel
 
 class ListActivity : AppCompatActivity() {
+    private lateinit var binding : ActivityListBinding
 
-    private lateinit var viewModel: DiaryViewModel
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var binding: ActivityListBinding
-    private val x = 0.0 // x 값을 초기화하세요
-    private val y = 0.0 // y 값을 초기화하세요
+    private lateinit var diaryViewModel: DiaryViewModel
+    private val listItems = arrayListOf<ListLayout>()
+    private val diaryListAdapter = DiaryListAdapter(listItems)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityListBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        val view = binding.root
+        setContentView(view)
 
-        recyclerView = binding.recyclerView
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.recyclerView.adapter = diaryListAdapter
 
-        val diaryAdapter = DiaryListAdapter()
-        recyclerView.adapter = diaryAdapter
+        // 사용자가 키워드 검색 후 리스트 아이템 클릭하면 발생하는 이벤트!
+        diaryListAdapter.setItemClickListener(object: DiaryListAdapter.OnItemClickListener {
+            override fun onClick(v: View, position: Int) {
+                val intent = Intent(this@ListActivity, AddActivity::class.java)
+                intent.putExtra("imageUrl", listItems[position].imageUrl)
+                intent.putExtra("name", listItems[position].placeName)
+                intent.putExtra("date", listItems[position].date)
+                intent.putExtra("title", listItems[position].title)
+                intent.putExtra("address", listItems[position].content)
+                intent.putExtra("order", position)
+            }
+        })
+    }
 
-        // DiaryViewModel 생성
-        viewModel = ViewModelProvider(this).get(DiaryViewModel::class.java)
+    private fun showDiaryResult(placeName: String, x : Double, y :Double) {
 
-        // 여기서 recycler view에 조회한 데이터를 매핑해주는 역할이 필요하다..!
-        // 그리고 일기의 id값도 함께 넘기고, 게시글 상세 조회를 진입하는 경우 해당 일기 id값도 함께 들고 가서
-        // 단일 조회가 이루어지도록 하면 좋겠음.
-        // 이미지쪽은 처리되는대로 추가해볼게 형..!
+        // 1. POI Item 리스너 추가가 필요함.
+        // 2. 해당 리스너에서 ListActivity.kt로 옮겨오면서, 그 좌표의 장소명(place name), x, y 값을 받아온다.
+        // 3. 저기 placeName, x, y에 잘 넣어준다.
+        val results: PlaceWithDiaries = diaryViewModel.getPlaceWithDiaries(x, y)
+        if (results != null) {
+            for (result in results.diaries) {
+                val item = ListLayout(
+                    diaryId = result.diaryId,
+                    imageUrl = result.imageUrl,
+                    placeId = result.placeId,
+                    placeName = placeName,
+                    title = result.title,
+                    content = result.content,
+                    date = result.createdAt.toString()
+                )
+
+                listItems.add(item)
+            }
+            diaryListAdapter.notifyDataSetChanged()
+        }
     }
 }
