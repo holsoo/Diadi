@@ -1,37 +1,50 @@
+package com.example.diadi.view.recycler.adapter
+
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.diadi.databinding.ActivityListBinding
-import com.example.diadi.domain.PlaceWithDiaries
+import com.example.diadi.R
+import com.example.diadi.view.recycler.item.ListLayout
 
-class DiaryListAdapter : RecyclerView.Adapter<DiaryListAdapter.DiaryViewHolder>() {
-    private var placeWithDiaries: List<PlaceWithDiaries> = listOf()
-
-    inner class DiaryViewHolder(private val binding: ActivityListBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(placeWithDiaries: PlaceWithDiaries) {
-            // 데이터를 ViewHolder에 바인딩하는 로직 작성
-            //binding.recyclerView. = placeWithDiaries.place.placeName 요기 처리 필요. 하나하나 binding
-        }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiaryViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = ActivityListBinding.inflate(inflater, parent, false)
-        return DiaryViewHolder(binding)
-    }
-
-    override fun onBindViewHolder(holder: DiaryViewHolder, position: Int) {
-        val placeWithDiaries = placeWithDiaries[position]
-        holder.bind(placeWithDiaries)
+class DiaryListAdapter(val itemList: ArrayList<ListLayout>) : RecyclerView.Adapter<DiaryListAdapter.ViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType : Int) : ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_layout, parent, false)
+        return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-        return placeWithDiaries.size
+        return itemList.size
     }
 
-    fun setPlaceWithDiaries(placeWithDiaries: List<PlaceWithDiaries>) {
-        this.placeWithDiaries = placeWithDiaries
-        notifyDataSetChanged()
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        holder.image.text = itemList[position].imageUrl
+        holder.date.text = itemList[position].date
+        holder.title.text = itemList[position].title
+
+        // 아이템 클릭 이벤트 리스너 추가
+        holder.itemView.setOnClickListener {
+            itemClickListener.onClick(it, position)
+        }
     }
+
+    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        val image: TextView = itemView.findViewById(R.id.image)
+        val date: TextView = itemView.findViewById(R.id.date)
+        val title: TextView = itemView.findViewById(R.id.title)
+    }
+
+    interface OnItemClickListener {
+        fun onClick(v: View, position: Int)
+    }
+
+    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.itemClickListener = onItemClickListener
+    }
+
+    private lateinit var itemClickListener : OnItemClickListener
 }
+
+

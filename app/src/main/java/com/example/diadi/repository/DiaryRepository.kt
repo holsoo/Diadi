@@ -1,6 +1,5 @@
 package com.example.diadi.repository
 
-import androidx.lifecycle.LiveData
 import com.example.diadi.dao.DiaryDao
 import com.example.diadi.domain.Diary
 import com.example.diadi.domain.PlaceWithDiaries
@@ -23,7 +22,8 @@ class DiaryRepository @Inject constructor(
         }
     }
 
-    fun getPlaceWithDiaries(x: Double, y: Double): List<PlaceWithDiaries>{
+    fun getPlaceWithDiaries(x: Double, y: Double): PlaceWithDiaries
+    {
         return diaryDao.getPlaceWithDiaries(x, y)
     }
 

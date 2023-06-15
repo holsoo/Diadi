@@ -1,6 +1,5 @@
 package com.example.diadi.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -26,7 +25,7 @@ interface DiaryDao {
 
     @Transaction
     @Query("SELECT * FROM place WHERE x = :x AND y = :y")
-    fun getPlaceWithDiaries(x: Double, y: Double): List<PlaceWithDiaries>
+    fun getPlaceWithDiaries(x: Double, y: Double): PlaceWithDiaries
 
     @Insert
     fun insertDiary(diary: Diary)
