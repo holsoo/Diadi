@@ -7,5 +7,7 @@ class ListLayout(
     val placeName : String,
     val title : String,
     val content : String,
-    var date: String
+    var date: String,
+    var x: Double,
+    var y: Double
 )

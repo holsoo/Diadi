@@ -121,7 +121,10 @@ class MainActivity : AppCompatActivity() {
     // 마커 클릭 이벤트 리스너
     class MarkerEventListener(val context: Context): MapView.POIItemEventListener {
         override fun onPOIItemSelected(mapView: MapView?, poiItem: MapPOIItem?) {
-
+            val listIntent = Intent(context, ListActivity::class.java)
+            listIntent.putExtra("Place", poiItem?.itemName)
+            listIntent.putExtra("x", poiItem?.mapPoint.toString())
+            context.startActivity(listIntent)
         }
 
         override fun onCalloutBalloonOfPOIItemTouched(p0: MapView?, p1: MapPOIItem?) {
